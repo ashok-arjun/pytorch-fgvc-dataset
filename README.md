@@ -20,6 +20,8 @@ The code was tested on
 - pytorch==1.4.0
 - torchvision==0.4.1
 
+The CUB dataset needs `gdown` package installed
+
 Use them the similar way you use `torchvision.datasets`.
 ```python
 train_dataset = Cub2011('./cub2011', train=True, download=False)
