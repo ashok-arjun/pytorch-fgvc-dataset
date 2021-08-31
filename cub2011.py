@@ -5,6 +5,7 @@ from torchvision.datasets import VisionDataset
 from torchvision.datasets.folder import default_loader
 from torchvision.datasets.utils import download_file_from_google_drive
 
+import gdown
 
 class Cub2011(VisionDataset):
     """`CUB-200-2011 <http://www.vision.caltech.edu/visipedia/CUB-200-2011.html>`_ Dataset.
@@ -77,8 +78,9 @@ class Cub2011(VisionDataset):
             print('Files already downloaded and verified')
             return
 
-        download_file_from_google_drive(self.file_id, self.root, self.filename, self.tgz_md5)
-
+        url = 'https://drive.google.com/uc?id=' + self.file_id
+        gdown.download(url, os.path.join(self.root, self.filename), quiet=False)
+        
         with tarfile.open(os.path.join(self.root, self.filename), "r:gz") as tar:
             tar.extractall(path=self.root)
 
